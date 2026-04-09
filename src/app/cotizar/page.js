@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Phone, ShieldCheck, Wrench, Layers, Star } from "lucide-react";
 import CTA from "@/components/ct";
 import Footer from "@/components/footer";
@@ -7,18 +8,15 @@ import Navbar from "@/components/nav";
 import ProjectsPreview from "@/components/preview";
 import Services from "@/components/services";
 import WhyUs from "@/components/why";
-
-export default function Home() {
+import DoorConfigurator from "@/components/config";
+export default function CotizarPage() {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white min-h-screen">
       <Navbar />
-      <Hero />
-      <Services />
-      <DoorTypes />
-      <WhyUs />
-      <ProjectsPreview />
-      <CTA />
-      <Footer />
+      <div className="p-10 max-w-xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">Cotizar</h1>
+        <DoorConfigurator />
+      </div>
     </div>
   );
 }
