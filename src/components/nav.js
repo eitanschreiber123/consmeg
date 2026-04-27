@@ -1,35 +1,72 @@
 "use client"
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, ShieldCheck, Wrench, Layers, Star } from "lucide-react";
+import { Phone, ShieldCheck, Wrench, Layers, Star, Menu, X } from "lucide-react";
 import Link from "next/link";
+
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
+  const navItems = [
+    { title: 'Servicios', link: 'services' },
+    { title: 'Proyectos', link: 'projects' },
+    { title: 'Contacto', link: 'contact' }
+  ];
+
   return (
-    <nav className="flex justify-between items-center p-6 border-b border-gray-800">
+    <nav className="flex justify-between items-center p-6 border-b border-gray-800 relative">
       <Link href="/" className="text-xl font-bold">CONSMEG</Link>
-      <div className="flex gap-6">
-        {[{title:'Servicios',link:'services'},{title:'Proyectos',link:'projects'},{title:'Contacto',link:'contact'}].map((item,i)=> (
-          <Link key={i} href={`/${item.link.toLowerCase()}`} className="relative group">
+
+      {/* Desktop Menu */}
+      <div className="hidden min-[550px]:flex gap-6">
+        {navItems.map((item, i) => (
+          <Link key={i} href={`/${item.link}`} className="relative group">
             {item.title}
             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         ))}
       </div>
-      <Link href="/cotizar" className="bg-green-500 px-4 py-2 rounded-xl text-white font-semibold">
+
+      {/* Desktop Button */}
+      <Link
+        href="/cotizar"
+        className="hidden min-[550px]:block bg-green-500 px-4 py-2 rounded-xl text-white font-semibold"
+      >
         Cotizar
       </Link>
+
+      {/* Hamburger Icon */}
+      <button
+        className="min-[550px]:hidden"
+        onClick={() => setOpen(!open)}
+      >
+        {open ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center gap-6 py-6 min-[550px]:hidden">
+          {navItems.map((item, i) => (
+            <Link
+              key={i}
+              href={`/${item.link}`}
+              onClick={() => setOpen(false)}
+              className="text-lg"
+            >
+              {item.title}
+            </Link>
+          ))}
+          <Link
+            href="/cotizar"
+            onClick={() => setOpen(false)}
+            className="bg-green-500 px-4 py-2 rounded-xl text-white font-semibold"
+          >
+            Cotizar
+          </Link>
+        </div>
+      )}
     </nav>
   );
-}
-const services = [
-  { title: "Puertas Blindadas", desc: "Alta seguridad", icon: ShieldCheck },
-  { title: "Automatización", desc: "Motores y control", icon: Wrench },
-  { title: "Garaje", desc: "Todo tipo de puertas", icon: Layers },
-];
+};
 
-const doorTypes = [
-  { title: "Seccionales", img: "https://images.unsplash.com/photo-1597002975673-ec9c8c4b7f02" },
-  { title: "Enrollables", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952" },
-  { title: "Corredizas", img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511" },
-  { title: "Abatibles", img: "https://images.unsplash.com/photo-1493809842364-78817add7ffb" },
-];
-  export default Navbar
+export default Navbar;
