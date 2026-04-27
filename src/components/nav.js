@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="flex justify-between items-center p-6 border-b border-gray-800 relative">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black">
       <Link href="/" className="text-xl font-bold">CONSMEG</Link>
 
       {/* Desktop Menu */}
