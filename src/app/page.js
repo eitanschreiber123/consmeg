@@ -17,6 +17,10 @@ export default function Home() {
       <DoorTypes />
       <WhyUs />
       <CTA />
+      <section className="py-20 text-center" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <h2 className="text-3xl font-bold mb-4">Quienes Somos</h2>
+            <p>Necesito mas contenido</p>
+          </section>
       <Footer />
     </div>
   );
