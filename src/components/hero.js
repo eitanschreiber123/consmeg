@@ -8,7 +8,7 @@ const Hero = () => {
   const y = useTransform(scrollY, [0, 300], [0, 100]);
 
   return (
-    <section className="h-[80vh] relative overflow-hidden flex items-center justify-center">
+    <section className="h-[80vh] relative overflow-hidden flex items-center justify-center mt-20">
       <motion.div
         style={{ y }}
         className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')] bg-cover opacity-40"

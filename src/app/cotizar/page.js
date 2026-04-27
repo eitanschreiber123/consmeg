@@ -13,7 +13,7 @@ export default function CotizarPage() {
   return (
     <div className="bg-black text-white min-h-screen">
       <Navbar />
-      <div className="p-10 max-w-xl mx-auto">
+      <div className="p-10 max-w-xl mx-auto mt-20">
         <h1 className="text-3xl font-bold mb-6">Cotizar</h1>
         <DoorConfigurator />
       </div>

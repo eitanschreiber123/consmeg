@@ -16,7 +16,7 @@ export default function ServiciosPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="py-16 px-6 text-center border-b border-gray-800">
+      <section className="py-16 px-6 text-center border-b border-gray-800 mt-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Servicios</h1>
         <p className="text-gray-400 max-w-2xl mx-auto">
           Fabricación, instalación y automatización de puertas metálicas para hogares, negocios e industria.

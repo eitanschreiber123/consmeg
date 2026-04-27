@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Phone } from "lucide-react";
+import styles from './config.module.css'
 
 const ResizableDoor = ({ image }) => {
   const [size, setSize] = useState(60);
@@ -60,7 +61,7 @@ const DoorConfigurator = () => {
         <div className="space-y-6">
           <div>
             <h3>Tipo</h3>
-            <div className="flex gap-2 flex-wrap">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
               {Object.keys(images).map((t) => (
                 <button key={t} onClick={() => setType(t)}
                   className={`px-3 py-2 rounded ${type===t?"bg-green-500 text-black":"bg-gray-800"}`}>
@@ -101,7 +102,7 @@ const DoorConfigurator = () => {
 
           <div>
             <h3>Dimensiones</h3>
-            <div className="flex gap-2">
+            <div className={styles.dim}>
               <input type="number" value={width} onChange={(e)=>setWidth(Number(e.target.value))} className="p-2 bg-gray-900" />
               <input type="number" value={height} onChange={(e)=>setHeight(Number(e.target.value))} className="p-2 bg-gray-900" />
             </div>
