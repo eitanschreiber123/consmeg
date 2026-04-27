@@ -1,11 +1,11 @@
 "use client"
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Phone, ShieldCheck, Wrench, Layers, Star, Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const navItems = [
     { title: 'Servicios', link: 'services' },
@@ -13,16 +13,34 @@ const Navbar = () => {
     { title: 'Contacto', link: 'contact' }
   ];
 
+  // 👇 Detect clicks outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [open]);
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black/80 backdrop-blur-md">
       <Link href="/" className="text-xl font-bold">CONSMEG</Link>
 
       {/* Desktop Menu */}
       <div className="hidden min-[550px]:flex gap-6">
         {navItems.map((item, i) => (
-          <Link key={i} href={`/${item.link}`} className="relative group">
+          <Link key={i} href={`/${item.link}`}>
             {item.title}
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         ))}
       </div>
@@ -35,7 +53,7 @@ const Navbar = () => {
         Cotizar
       </Link>
 
-      {/* Hamburger Icon */}
+      {/* Hamburger */}
       <button
         className="min-[550px]:hidden"
         onClick={() => setOpen(!open)}
@@ -45,13 +63,15 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center gap-6 py-6 min-[550px]:hidden">
+        <div
+          ref={menuRef}
+          className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center gap-6 py-6 min-[550px]:hidden"
+        >
           {navItems.map((item, i) => (
             <Link
               key={i}
               href={`/${item.link}`}
               onClick={() => setOpen(false)}
-              className="text-lg"
             >
               {item.title}
             </Link>
