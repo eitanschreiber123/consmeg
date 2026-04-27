@@ -16,7 +16,6 @@ export default function Home() {
       <Services />
       <DoorTypes />
       <WhyUs />
-      <ProjectsPreview />
       <CTA />
       <Footer />
     </div>
