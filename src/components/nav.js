@@ -33,7 +33,7 @@ const Navbar = () => {
   }, [open]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black/80 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center p-6 border-b border-gray-800 bg-black/80 backdrop-blur-md" style={{marginTop:'46px'}}>
       <Link href="/" className="text-xl font-bold">CONSMEG</Link>
 
       {/* Desktop Menu */}
